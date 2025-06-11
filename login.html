@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epicurean | Premium Login</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #8B5A2B;
+            --secondary-color: #D4A59A;
+            --accent-color: #E8C07D;
+            --light-color: #F9F5F0;
+            --dark-color: #2A2A2A;
+            --error-color: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFFFFF;
+            color: var(--dark-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: fadeInScale 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+
+        .login-header p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-control {
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            box-shadow: none !important;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1) !important;
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            background: white;
+            padding: 0 5px;
+        }
+
+        .form-control:focus + .floating-label,
+        .form-control:not(:placeholder-shown) + .floating-label {
+            top: -10px;
+            left: 15px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            background: white;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .password-toggle {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-login {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(139, 90, 43, 0.3);
+        }
+
+        .btn-login:hover {
+            background-color: #6B4226;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 90, 43, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+            margin: 0 10px;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: var(--dark-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-btn.facebook {
+            color: #3B5998;
+        }
+
+        .social-btn.google {
+            color: #DB4437;
+        }
+
+        .social-btn.apple {
+            color: #000;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error state */
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error .form-control {
+            border-color: var(--error-color);
+        }
+
+        .error .floating-label {
+            color: var(--error-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 575.98px) {
+            .login-container {
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            .login-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Floating animation for background elements */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements (optional) -->
+    <div class="position-absolute top-20 start-10 floating" style="left: 10%; top: 20%; z-index: -1;">
+        <img src="https://img.icons8.com/ios-filled/100/8B5A2B/olive.png" width="60" alt="olive">
+    </div>
+    <div class="position-absolute bottom-20 end-10 floating" style="right: 10%; bottom: 20%; z-index: -1; animation-delay: 2s;">
+        <img src="https://img.icons8.com/ios-filled/100/8B5A2B/garlic.png" width="60" alt="garlic">
+    </div>
+
+    <!-- Main Login Container -->
+    <div class="login-container">
+        <div class="login-header">
+            <h2 class="animate__animated animate__fadeInDown">Welcome Back</h2>
+            <p class="animate__animated animate__fadeIn animate__delay-1s">Sign in to access your recipes, meal plans, and more</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder=" " required>
+                <label for="email" class="floating-label">Email Address</label>
+                <i class="fas fa-envelope input-icon"></i>
+                <div class="error-message" id="emailError">Please enter a valid email</div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder=" " required>
+                <label for="password" class="floating-label">Password</label>
+                <i class="fas fa-eye password-toggle input-icon" id="togglePassword"></i>
+                <div class="error-message" id="passwordError">Password must be at least 6 characters</div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+                <a href="#" class="text-decoration-none">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-login mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                <i class="fas fa-sign-in-alt me-2"></i> <a href="sign.html" class="text-decoration-none">Sign In</a>
+            </button>
+
+            <div class="divider animate__animated animate__fadeIn animate__delay-1s">or continue with</div>
+
+            <div class="social-login animate__animated animate__fadeIn animate__delay-1s">
+                <button type="button" class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="social-btn google">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button type="button" class="social-btn apple">
+                    <i class="fab fa-apple"></i>
+                </button>
+            </div>
+
+            <div class="login-footer animate__animated animate__fadeIn animate__delay-1s">
+                <p>Don't have an account? <a href="#">Sign up</a></p>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // Form validation
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            // Reset errors
+            emailInput.parentElement.classList.remove('error');
+            emailError.style.display = 'none';
+            passwordInput.parentElement.classList.remove('error');
+            passwordError.style.display = 'none';
+
+            // Validate email
+            if (!validateEmail(emailInput.value)) {
+                emailInput.parentElement.classList.add('error');
+                emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate password
+            if (passwordInput.value.length < 6) {
+                passwordInput.parentElement.classList.add('error');
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Simulate login (replace with actual API call)
+                console.log('Logging in with:', {
+                    email: emailInput.value,
+                    password: passwordInput.value,
+                    remember: document.getElementById('rememberMe').checked
+                });
+
+                // Show loading state
+                const submitBtn = loginForm.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Signing in...';
+                submitBtn.disabled = true;
+
+                // Simulate API delay
+                setTimeout(() => {
+                    alert('Login successful! Redirecting...');
+                    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i> Sign In';
+                    submitBtn.disabled = false;
+                    // window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+        });
+
+        // Social login handlers
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const provider = this.classList.contains('facebook') ? 'Facebook' : 
+                               this.classList.contains('google') ? 'Google' : 'Apple';
+                alert(`Signing in with ${provider}...`);
+                // Add actual OAuth integration here
+            });
+        });
+
+        // Floating label initialization
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    this.nextElementSibling.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

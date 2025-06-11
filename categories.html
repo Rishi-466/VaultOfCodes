@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epicurean Atlas | Next-Gen Culinary Exploration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF4D4D;
+            --primary-dark: #E63946;
+            --secondary: #2EC4B6;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --success: #28A745;
+            --warning: #FFC107;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --dark: #F8F9FA;
+            --light: #1A1A2E;
+            --glass: rgba(26, 26, 46, 0.5);
+            --glass-border: rgba(26, 26, 46, 0.7);
+            --glass-highlight: rgba(26, 26, 46, 0.6);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        /* 3D Card Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transform: translateZ(0);
+        }
+
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.8;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(230, 57, 70, 0.6) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #FF9A8B 0%, #FF6B95 50%, #FF8E53 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            width: 50px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Category Cards */
+        .category-card {
+            height: 100%;
+            transition: var(--transition);
+            overflow: hidden;
+            position: relative;
+            border-radius: 16px;
+        }
+
+        .category-media {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .category-card:hover .category-img {
+            transform: scale(1.1);
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .category-content {
+            padding: 2rem;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .category-desc {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .category-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-explore:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-explore i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-explore:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--glass-highlight);
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        .floating-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 10%;
+            right: 5%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .hero-section {
+                height: 70vh;
+            }
+            
+            .category-media {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 60vh;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .search-input {
+                padding: 1rem 1.25rem;
+            }
+            
+            .category-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 80vh;
+            }
+            
+            .category-media {
+                height: 200px;
+            }
+            
+            .section-header {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-chef-chopping-vegetables-1582-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title animate__animated animate__fadeInDown">Epicurean Atlas</h1>
+            <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">Discover the world through its flavors - A next-generation culinary exploration platform</p>
+            
+            <div class="search-container animate__animated animate__fadeInUp animate__delay-2s">
+                <input type="text" class="search-input" placeholder="Search for cuisines, techniques, ingredients...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Featured Categories -->
+        <div class="section-header animate__animated animate__fadeIn">
+            <h2 class="section-title">Global Gastronomy</h2>
+            <p class="section-subtitle">Explore our meticulously curated collection of culinary categories from every corner of the world</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Category 1 - Molecular Gastronomy -->
+            <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp">
+                <div class="category-card glass-card card-3d">
+                    <div class="category-media">
+                        <img src="https://source.unsplash.com/random/800x600/?molecular-gastronomy" class="category-img" alt="Molecular Gastronomy">
+                        <span class="category-badge">Cutting Edge</span>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Molecular Gastronomy</h3>
+                        <p class="category-desc">Transform ordinary ingredients into extraordinary experiences with scientific cooking techniques.</p>
+                        <div class="category-meta">
+                            <span class="meta-item"><i class="fas fa-flask"></i> 42 Techniques</span>
+                            <span class="meta-item"><i class="fas fa-star"></i> 4.9/5.0</span>
+                        </div>
+                        <button class="btn-explore">
+                            Deconstruct Flavors <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 2 - Fermentation -->
+            <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="category-card glass-card card-3d">
+                    <div class="category-media">
+                        <img src="https://source.unsplash.com/random/800x600/?fermentation" class="category-img" alt="Fermentation">
+                        <span class="category-badge">Ancient Wisdom</span>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Art of Fermentation</h3>
+                        <p class="category-desc">Master the alchemy of microbes to create complex flavors and preserve foods.</p>
+                        <div class="category-meta">
+                            <span class="meta-item"><i class="fas fa-jar"></i> 35 Projects</span>
+                            <span class="meta-item"><i class="fas fa-clock"></i> 3d-1yr</span>
+                        </div>
+                        <button class="btn-explore">
+                            Cultivate Taste <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 3 - Fire Cooking -->
+            <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="category-card glass-card card-3d">
+                    <div class="category-media">
+                        <img src="https://source.unsplash.com/random/800x600/?fire-cooking" class="category-img" alt="Fire Cooking">
+                        <span class="category-badge">Primal</span>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Elemental Fire Cooking</h3>
+                        <p class="category-desc">Harness the primal power of fire with modern techniques for unmatched flavor.</p>
+                        <div class="category-meta">
+                            <span class="meta-item"><i class="fas fa-fire"></i> 28 Methods</span>
+                            <span class="meta-item"><i class="fas fa-temperature-high"></i> 200-1200°F</span>
+                        </div>
+                        <button class="btn-explore">
+                            Ignite Passion <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 4 - Plant-Based -->
+            <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp">
+                <div class="category-card glass-card card-3d">
+                    <div class="category-media">
+                        <img src="https://source.unsplash.com/random/800x600/?vegan-food" class="category-img" alt="Plant-Based Cuisine">
+                        <span class="category-badge">Future Food</span>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Next-Gen Plant-Based</h3>
+                        <p class="category-desc">Innovative techniques that transform plants into extraordinary culinary experiences.</p>
+                        <div class="category-meta">
+                            <span class="meta-item"><i class="fas fa-leaf"></i> 120+ Recipes</span>
+                            <span class="meta-item"><i class="fas fa-bolt"></i> High Protein</span>
+                        </div>
+                        <button class="btn-explore">
+                            Reimagine Plants <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 5 - Regional Mastery -->
+            <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="category-card glass-card card-3d">
+                    <div class="category-media">
+                        <img src="https://source.unsplash.com/random/800x600/?asian-street-food" class="category-img" alt="Regional Mastery">
+                        <span class="category-badge">Cultural Deep Dive</span>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Regional Mastery Series</h3>
+                        <p class="category-desc">Authentic techniques and recipes from specific culinary regions worldwide.</p>
+                        <div class="category-meta">
+                            <span class="meta-item"><i class="fas fa-globe-asia"></i> 18 Regions</span>
+                            <span class="meta-item"><i class="fas fa-history"></i> Centuries Old</span>
+                        </div>
+                        <button class="btn-explore">
+                            Taste Tradition <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 6 - Precision Baking -->
+            <div class="col-lg-4 col-md-6 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="category-card glass-card card-3d">
+                    <div class="category-media">
+                        <img src="https://source.unsplash.com/random/800x600/?artisan-bread" class="category-img" alt="Precision Baking">
+                        <span class="category-badge">Exact Science</span>
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Precision Baking</h3>
+                        <p class="category-desc">Where art meets science in the exacting world of professional baking.</p>
+                        <div class="category-meta">
+                            <span class="meta-item"><i class="fas fa-percentage"></i> 0.1g Accuracy</span>
+                            <span class="meta-item"><i class="fas fa-thermometer-half"></i> ±1° Control</span>
+                        </div>
+                        <button class="btn-explore">
+                            Perfect Your Craft <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parallax Section -->
+    <div class="container-fluid px-0 my-5">
+        <div class="parallax-section" style="height: 60vh; background: url('https://source.unsplash.com/random/1920x1080/?chef-kitchen') center/cover fixed; position: relative;">
+            <div class="parallax-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26, 26, 46, 0.7); display: flex; align-items: center; justify-content: center;">
+                <div class="text-center text-white p-4" style="max-width: 800px;">
+                    <h2 class="display-4 mb-4">Elevate Your Culinary IQ</h2>
+                    <p class="lead mb-5">Join our community of 250,000+ culinary enthusiasts mastering next-level cooking techniques</p>
+                    <button class="btn btn-primary btn-lg px-5 py-3" style="background: var(--primary); border: none; border-radius: 50px; font-weight: 600;">
+                        Start Your Journey <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Techniques Section -->
+    <div class="container py-5">
+        <div class="section-header">
+            <h2 class="section-title">Masterclass Techniques</h2>
+            <p class="section-subtitle">Go beyond recipes with these professional culinary methods</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Technique 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card p-4 h-100 text-center" style="transition: var(--transition);">
+                    <div class="icon-wrapper mb-4" style="width: 80px; height: 80px; background: rgba(255, 77, 77, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="fas fa-dna" style="font-size: 2rem; color: var(--primary);"></i>
+                    </div>
+                    <h4 style="font-weight: 700; margin-bottom: 1rem;">Flavor Pairing Science</h4>
+                    <p style="color: var(--gray);">Understand molecular compatibility for unexpected but perfect combinations.</p>
+                </div>
+            </div>
+            
+            <!-- Technique 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card p-4 h-100 text-center" style="transition: var(--transition);">
+                    <div class="icon-wrapper mb-4" style="width: 80px; height: 80px; background: rgba(46, 196, 182, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="fas fa-weight-hanging" style="font-size: 2rem; color: var(--secondary);"></i>
+                    </div>
+                    <h4 style="font-weight: 700; margin-bottom: 1rem;">Precision Measuring</h4>
+                    <p style="color: var(--gray);">Professional techniques for exact measurements that guarantee results.</p>
+                </div>
+            </div>
+            
+            <!-- Technique 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card p-4 h-100 text-center" style="transition: var(--transition);">
+                    <div class="icon-wrapper mb-4" style="width: 80px; height: 80px; background: rgba(255, 193, 7, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="fas fa-cut" style="font-size: 2rem; color: var(--warning);"></i>
+                    </div>
+                    <h4 style="font-weight: 700; margin-bottom: 1rem;">Knife Mastery</h4>
+                    <p style="color: var(--gray);">17 essential cuts that will transform your prep work efficiency.</p>
+                </div>
+            </div>
+            
+            <!-- Technique 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="glass-card p-4 h-100 text-center" style="transition: var(--transition);">
+                    <div class="icon-wrapper mb-4" style="width: 80px; height: 80px; background: rgba(40, 167, 69, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="fas fa-temperature-low" style="font-size: 2rem; color: var(--success);"></i>
+                    </div>
+                    <h4 style="font-weight: 700; margin-bottom: 1rem;">Temperature Control</h4>
+                    <p style="color: var(--gray);">The science behind perfect cooking temperatures for every ingredient.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="container my-5">
+        <div class="glass-card p-5" style="border-radius: 20px;">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h3 style="font-weight: 800; margin-bottom: 1rem;">Join Our Culinary Newsletter</h3>
+                    <p style="color: var(--gray); max-width: 500px;">Get weekly advanced techniques, rare recipes, and equipment reviews from world-class chefs.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="d-flex">
+                        <input type="email" class="form-control form-control-lg" placeholder="Your professional email" style="border-radius: 50px 0 0 50px; border: none; padding-left: 25px;">
+                        <button class="btn btn-primary" style="background: var(--primary); border: none; border-radius: 0 50px 50px 0; padding: 0 30px; font-weight: 600;">
+                            Subscribe <i class="fas fa-paper-plane ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5" style="background: var(--dark); color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 style="font-weight: 800; margin-bottom: 1.5rem;">Epicurean Atlas</h4>
+                    <p style="opacity: 0.8;">The most advanced culinary exploration platform for professional and aspiring chefs worldwide.</p>
+                    <div class="social-icons mt-4" style="display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 style="font-weight: 700; margin-bottom: 1.5rem;">Explore</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Techniques</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Cuisines</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Ingredients</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Equipment</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 style="font-weight: 700; margin-bottom: 1.5rem;">Learn</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Courses</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Workshops</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Certifications</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Masterclasses</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 style="font-weight: 700; margin-bottom: 1.5rem;">Company</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Chefs</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Careers</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 style="font-weight: 700; margin-bottom: 1.5rem;">Legal</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Terms</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Privacy</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Cookies</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: white; opacity: 0.8; text-decoration: none;">Licenses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 3rem 0;">
+            <div class="text-center" style="opacity: 0.7;">
+                <p>© 2023 Epicurean Atlas. All rights reserved. Culinary innovation since 2018.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+        
+        // Simple animation trigger on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate__animated');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    const animation = element.getAttribute('class').split('animate__animated ')[1];
+                    element.classList.add(animation);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

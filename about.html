@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Culinary Delights</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ffa502;
+            --dark-color: #2f3542;
+            --light-color: #f1f2f6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff9f9;
+            color: #333;
+            padding-top: 0;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            color: var(--dark-color);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .team-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            margin-bottom: 30px;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .mission-section {
+            background-color: white;
+            padding: 80px 0;
+        }
+        
+        .stats-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        
+        .stats-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Our Culinary Journey</h1>
+            <p class="lead">Discover the passion behind our recipes and the people who make it all possible</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Our Story</h2>
+                    <p class="lead">Founded in 2010, Culinary Delights began as a small food blog sharing family recipes.</p>
+                    <p>What started as a passion project quickly grew into a thriving community of food enthusiasts. Our founder, Sarah Johnson, wanted to create a space where home cooks could find reliable, tested recipes with clear instructions.</p>
+                    <p>Today, we're proud to have a team of professional chefs, nutritionists, and food photographers working together to bring you the best culinary content. We test each recipe at least three times to ensure perfection before publishing.</p>
+                    <p>Our mission is to make cooking accessible to everyone, from complete beginners to seasoned home chefs.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033" alt="Our kitchen" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <h2 class="section-title text-center">Our Mission & Values</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-heart fa-3x text-danger"></i>
+                        </div>
+                        <h3>Passion for Food</h3>
+                        <p>We believe cooking should be an act of love, not a chore. Our recipes are crafted with care to bring joy to your kitchen.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-leaf fa-3x text-success"></i>
+                        </div>
+                        <h3>Quality Ingredients</h3>
+                        <p>We emphasize fresh, seasonal ingredients and provide substitutions to make recipes work for your pantry.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-users fa-3x text-primary"></i>
+                        </div>
+                        <h3>Community Focus</h3>
+                        <p>Our readers are at the heart of everything we do. We listen to your feedback and adapt our content accordingly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-item">
+                        <div class="stats-number" id="recipe-count">0</div>
+                        <h4>Recipes</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-item">
+                        <div class="stats-number" id="member-count">0</div>
+                        <h4>Community Members</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-item">
+                        <div class="stats-number" id="years-count">0</div>
+                        <h4>Years Serving You</h4>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stats-item">
+                        <div class="stats-number" id="test-count">0</div>
+                        <h4>Recipe Tests</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Meet Our Team</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" class="card-img-top team-img" alt="Sarah Johnson">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Sarah Johnson</h5>
+                            <p class="text-muted">Founder & Head Chef</p>
+                            <p class="card-text">With 15 years in professional kitchens, Sarah brings expertise to every recipe.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a" class="card-img-top team-img" alt="Michael Chen">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Michael Chen</h5>
+                            <p class="text-muted">Executive Chef</p>
+                            <p class="card-text">Specializing in Asian fusion cuisine, Michael creates our most innovative dishes.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e" class="card-img-top team-img" alt="Emma Rodriguez">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Emma Rodriguez</h5>
+                            <p class="text-muted">Nutritionist</p>
+                            <p class="card-text">Emma ensures our recipes are as nutritious as they are delicious.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1562788869-4ed32648eb72" class="card-img-top team-img" alt="David Kim">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">David Kim</h5>
+                            <p class="text-muted">Food Photographer</p>
+                            <p class="card-text">David's stunning photography makes our recipes come to life.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Community Says</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card text-center">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" class="testimonial-img" alt="Testimonial 1">
+                        <h5>Jessica M.</h5>
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-0">"I was a complete beginner when I found Culinary Delights. Their step-by-step recipes gave me the confidence to start cooking for my family."</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card text-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" class="testimonial-img" alt="Testimonial 2">
+                        <h5>Robert T.</h5>
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-0">"The recipes never fail! I've cooked over 50 dishes from this site and every one has been a hit at dinner parties."</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card text-center">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" class="testimonial-img" alt="Testimonial 3">
+                        <h5>Priya K.</h5>
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="mb-0">"I love the international recipes section. It's helped me explore cuisines from around the world right in my own kitchen."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 class="mb-4">Join Our Culinary Community</h2>
+                    <p class="mb-4">Subscribe to our newsletter for weekly recipes, cooking tips, and exclusive content.</p>
+                    <form class="row g-2 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg" placeholder="Your email address">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-light btn-lg w-100">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Counter Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stats counters
+            const counters = document.querySelectorAll('.stats-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = counter.id === 'recipe-count' ? 1250 :
+                                counter.id === 'member-count' ? 85000 :
+                                counter.id === 'years-count' ? 13 :
+                                counter.id === 'test-count' ? 3750 : 0;
+                
+                const animate = () => {
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+                    
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(animate, 1);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                
+                animate();
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

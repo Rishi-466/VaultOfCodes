@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Fir Recipes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Georgia', serif;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1518492104633-130d0cc84637?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .recipe-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        .recipe-card:hover {
+            transform: translateY(-10px);
+        }
+        .recipe-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .recipe-body {
+            padding: 20px;
+        }
+        .recipe-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .recipe-meta {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        .ingredients-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .ingredients-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .modal-img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <div class="container">
+            <h1 class="display-3">Best Fir Recipes</h1>
+            <p class="lead">Discover the most delicious fir-based recipes from around the world</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Recipe 1 -->
+            <div class="col-md-4">
+                <div class="recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal1">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Salad" class="recipe-img">
+                    <div class="recipe-body">
+                        <h3 class="recipe-title">Fresh Fir Needle Salad</h3>
+                        <div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> 15 mins</span> | 
+                            <span>Easy</span>
+                        </div>
+                        <p>A refreshing salad with young fir needles, mixed greens, and a citrus dressing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe 2 -->
+            <div class="col-md-4">
+                <div class="recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal2">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Tea" class="recipe-img">
+                    <div class="recipe-body">
+                        <h3 class="recipe-title">Healing Fir Needle Tea</h3>
+                        <div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> 10 mins</span> | 
+                            <span>Easy</span>
+                        </div>
+                        <p>A soothing herbal tea made from fresh fir needles, rich in vitamin C.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe 3 -->
+            <div class="col-md-4">
+                <div class="recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal3">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Honey" class="recipe-img">
+                    <div class="recipe-body">
+                        <h3 class="recipe-title">Fir Tip Honey</h3>
+                        <div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> 30 mins + infusing</span> | 
+                            <span>Medium</span>
+                        </div>
+                        <p>Sweet and aromatic honey infused with the essence of young fir tips.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Recipe 4 -->
+            <div class="col-md-4">
+                <div class="recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal4">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Syrup" class="recipe-img">
+                    <div class="recipe-body">
+                        <h3 class="recipe-title">Fir Needle Syrup</h3>
+                        <div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> 45 mins</span> | 
+                            <span>Medium</span>
+                        </div>
+                        <p>A versatile syrup perfect for cocktails, desserts, or as a natural remedy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe 5 -->
+            <div class="col-md-4">
+                <div class="recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal5">
+                    <img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Salt" class="recipe-img">
+                    <div class="recipe-body">
+                        <h3 class="recipe-title">Fir-infused Salt</h3>
+                        <div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> 5 mins + drying</span> | 
+                            <span>Easy</span>
+                        </div>
+                        <p>A fragrant finishing salt that adds forest flavor to any dish.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe 6 -->
+            <div class="col-md-4">
+                <div class="recipe-card" data-bs-toggle="modal" data-bs-target="#recipeModal6">
+                    <img src="https://images.unsplash.com/photo-1490642914619-7955a3fd483c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Cookies" class="recipe-img">
+                    <div class="recipe-body">
+                        <h3 class="recipe-title">Fir Shortbread Cookies</h3>
+                        <div class="recipe-meta">
+                            <span><i class="far fa-clock"></i> 1 hour</span> | 
+                            <span>Medium</span>
+                        </div>
+                        <p>Buttery cookies with a subtle piney flavor from finely chopped fir needles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe Modals -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="recipeModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fresh Fir Needle Salad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Salad" class="modal-img">
+                    <p>A refreshing salad that captures the essence of the forest with young, tender fir needles.</p>
+                    
+                    <h6>Ingredients:</h6>
+                    <ul class="ingredients-list">
+                        <li>1 cup young fir needles (new growth), finely chopped</li>
+                        <li>4 cups mixed salad greens</li>
+                        <li>1/2 cup walnuts, toasted</li>
+                        <li>1/4 cup dried cranberries</li>
+                        <li>1/4 cup crumbled goat cheese</li>
+                        <li>1 small shallot, thinly sliced</li>
+                    </ul>
+                    
+                    <h6>For the dressing:</h6>
+                    <ul class="ingredients-list">
+                        <li>3 tbsp olive oil</li>
+                        <li>1 tbsp lemon juice</li>
+                        <li>1 tsp honey</li>
+                        <li>1/2 tsp Dijon mustard</li>
+                        <li>Salt and pepper to taste</li>
+                    </ul>
+                    
+                    <h6>Instructions:</h6>
+                    <ol>
+                        <li>In a large bowl, combine the fir needles, salad greens, walnuts, cranberries, goat cheese, and shallot.</li>
+                        <li>In a small jar, combine all dressing ingredients and shake well to emulsify.</li>
+                        <li>Drizzle the dressing over the salad and toss gently to combine.</li>
+                        <li>Serve immediately and enjoy the fresh forest flavors!</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <strong>Tip:</strong> Only use the bright green new growth fir needles as they're more tender and less resinous than older needles.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="recipeModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Healing Fir Needle Tea</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Tea" class="modal-img">
+                    <p>A soothing herbal tea rich in vitamin C and antioxidants, perfect for cold season.</p>
+                    
+                    <h6>Ingredients:</h6>
+                    <ul class="ingredients-list">
+                        <li>1/2 cup fresh fir needles (washed)</li>
+                        <li>4 cups water</li>
+                        <li>1-2 tbsp honey (optional)</li>
+                        <li>1 cinnamon stick (optional)</li>
+                        <li>1 tsp lemon juice (optional)</li>
+                    </ul>
+                    
+                    <h6>Instructions:</h6>
+                    <ol>
+                        <li>Gently rinse the fir needles under cool water to remove any debris.</li>
+                        <li>Bring water to a boil in a small saucepan.</li>
+                        <li>Add the fir needles and cinnamon stick (if using), reduce heat to low, and simmer for 10 minutes.</li>
+                        <li>Remove from heat and let steep for an additional 5 minutes.</li>
+                        <li>Strain the tea into cups, add honey and lemon juice if desired, and enjoy warm.</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <strong>Health Benefits:</strong> Fir needle tea is naturally high in vitamin C (containing 3-5 times more than oranges) and has been traditionally used to support respiratory health.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade" id="recipeModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fir Tip Honey</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Honey" class="modal-img">
+                    <p>A sweet and aromatic honey infused with the essence of young fir tips, perfect for teas, desserts, or as a natural remedy.</p>
+                    
+                    <h6>Ingredients:</h6>
+                    <ul class="ingredients-list">
+                        <li>1 cup fresh fir tips (new growth)</li>
+                        <li>2 cups raw honey</li>
+                        <li>1 clean glass jar with lid</li>
+                    </ul>
+                    
+                    <h6>Instructions:</h6>
+                    <ol>
+                        <li>Gently rinse the fir tips and pat them dry with a clean towel.</li>
+                        <li>Place the fir tips in the glass jar, pressing them down slightly.</li>
+                        <li>Warm the honey slightly (just enough to make it pourable, not hot) and pour it over the fir tips, ensuring they're completely submerged.</li>
+                        <li>Seal the jar and let it sit in a cool, dark place for 2-4 weeks, shaking gently every few days.</li>
+                        <li>After infusing, strain out the fir tips if desired, or leave them in for continued flavor development.</li>
+                        <li>Store in a cool place and use within a year.</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <strong>Usage Ideas:</strong> Stir into tea, drizzle over yogurt or ice cream, use as a glaze for meats, or take by the spoonful when you feel a cold coming on.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div class="modal fade" id="recipeModal4" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fir Needle Syrup</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Syrup" class="modal-img">
+                    <p>A versatile syrup that captures the essence of the forest, perfect for cocktails, desserts, or as a natural remedy.</p>
+                    
+                    <h6>Ingredients:</h6>
+                    <ul class="ingredients-list">
+                        <li>2 cups fresh fir needles (packed)</li>
+                        <li>2 cups water</li>
+                        <li>2 cups sugar</li>
+                        <li>1 tbsp lemon juice</li>
+                    </ul>
+                    
+                    <h6>Instructions:</h6>
+                    <ol>
+                        <li>Rinse the fir needles and pat dry.</li>
+                        <li>In a saucepan, bring water to a boil. Add fir needles, remove from heat, cover, and let steep for 30 minutes.</li>
+                        <li>Strain the liquid through a fine mesh sieve or cheesecloth, pressing to extract all liquid.</li>
+                        <li>Return the liquid to the saucepan and add sugar and lemon juice.</li>
+                        <li>Bring to a gentle boil, stirring until sugar dissolves, then reduce heat and simmer for 15-20 minutes until slightly thickened.</li>
+                        <li>Let cool, then bottle in sterilized jars or bottles. Store in refrigerator for up to 3 months.</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <strong>Serving Suggestions:</strong> Use in cocktails (especially with gin or vodka), drizzle over pancakes or waffles, mix into sparkling water, or take by the spoonful as a winter remedy.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5 -->
+    <div class="modal fade" id="recipeModal5" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fir-infused Salt</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Salt" class="modal-img">
+                    <p>A fragrant finishing salt that adds a touch of forest flavor to any dish, from roasted meats to chocolate desserts.</p>
+                    
+                    <h6>Ingredients:</h6>
+                    <ul class="ingredients-list">
+                        <li>1 cup fresh fir needles (new growth preferred)</li>
+                        <li>1 cup coarse sea salt or kosher salt</li>
+                    </ul>
+                    
+                    <h6>Instructions:</h6>
+                    <ol>
+                        <li>Rinse fir needles and pat dry thoroughly.</li>
+                        <li>Finely chop the needles (a food processor works well for this).</li>
+                        <li>Mix the chopped needles with the salt in a bowl.</li>
+                        <li>Spread the mixture on a baking sheet and let dry at room temperature for 2-3 days, stirring occasionally.</li>
+                        <li>Alternatively, you can dry in a dehydrator or oven at the lowest setting (under 150°F) for 1-2 hours.</li>
+                        <li>Once completely dry, store in an airtight container. Will keep for 6-12 months.</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <strong>Usage Ideas:</strong> Sprinkle on roasted vegetables, rim cocktail glasses, season grilled meats, or even use on chocolate desserts for an unexpected flavor pairing.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6 -->
+    <div class="modal fade" id="recipeModal6" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fir Shortbread Cookies</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1490642914619-7955a3fd483c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fir Cookies" class="modal-img">
+                    <p>Buttery, crumbly shortbread cookies with a subtle piney flavor from finely chopped fir needles.</p>
+                    
+                    <h6>Ingredients:</h6>
+                    <ul class="ingredients-list">
+                        <li>1 cup unsalted butter, softened</li>
+                        <li>1/2 cup sugar</li>
+                        <li>2 tbsp fresh fir needles, finely chopped (new growth)</li>
+                        <li>2 cups all-purpose flour</li>
+                        <li>1/4 tsp salt</li>
+                        <li>1 tsp vanilla extract</li>
+                        <li>Optional: 1/2 tsp lemon zest</li>
+                    </ul>
+                    
+                    <h6>Instructions:</h6>
+                    <ol>
+                        <li>Preheat oven to 325°F (160°C).</li>
+                        <li>In a large bowl, cream together butter and sugar until light and fluffy.</li>
+                        <li>Add chopped fir needles, vanilla, and lemon zest (if using), mixing well.</li>
+                        <li>Gradually add flour and salt, mixing until just combined.</li>
+                        <li>Form dough into a log about 2 inches in diameter, wrap in plastic, and chill for 30 minutes.</li>
+                        <li>Slice into 1/4-inch thick rounds and place on parchment-lined baking sheets.</li>
+                        <li>Bake for 15-18 minutes until edges are just beginning to turn golden.</li>
+                        <li>Let cool on baking sheets for 5 minutes, then transfer to wire racks to cool completely.</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <strong>Serving Suggestion:</strong> These pair wonderfully with the fir needle tea or a cup of earl grey. For extra flair, sprinkle with fir-infused salt before baking.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <h4>Best Fir Recipes</h4>
+            <p>Discover the culinary uses of fir trees from around the world</p>
+            <p>&copy; 2023 Forest Flavors. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple JavaScript to enhance user experience
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to recipe cards when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {threshold: 0.1});
+
+            document.querySelectorAll('.recipe-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+
+            // Add click effect to recipe cards
+            document.querySelectorAll('.recipe-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
